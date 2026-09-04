@@ -1,0 +1,38 @@
+# Parameters referenced by the launch file and the ROS-GZ bridge
+
+world:
+  name: mecanum_classroom
+  sdf_file: mecanum_classroom.world
+
+simulation:
+  use_sim_time: true
+  real_time_factor: 1.0
+  max_step_size: 0.001
+
+spawn:
+  x: 0.0
+  y: 4.0
+  z: 0.0
+  yaw: -1.57
+
+# ros_gz_bridge topic mappings
+bridge_topics:
+  - ros_topic: /clock
+    gz_topic: /clock
+    ros_type: rosgraph_msgs/msg/Clock
+    direction: GZ_TO_ROS
+
+  - ros_topic: /cmd_vel
+    gz_topic: /model/mecanum_robot/cmd_vel
+    ros_type: geometry_msgs/msg/Twist
+    direction: ROS_TO_GZ
+
+  - ros_topic: /odom
+    gz_topic: /model/mecanum_robot/odometry
+    ros_type: nav_msgs/msg/Odometry
+    direction: GZ_TO_ROS
+
+  - ros_topic: /scan
+    gz_topic: /lidar
+    ros_type: sensor_msgs/msg/LaserScan
+    direction: GZ_TO_ROS
