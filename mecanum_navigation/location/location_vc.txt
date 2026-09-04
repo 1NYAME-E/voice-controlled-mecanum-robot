@@ -1,0 +1,23 @@
+# Based on my /amcl_pose echo
+locations = {
+    "in between the second table  at the left wall and the the table opposite it": {
+        "x": 2.4, 
+        "y": 9.3, 
+    },
+    "right door": {
+         "x": 0.07
+         "y": 8.13
+    },
+    "teacher's lectern": {
+         "x": 0.31
+         "y": 4.14
+    },
+    "left door":{
+        "x": -0.0062
+        "y": 0.15328
+    },
+    "behind the class": {
+        "x": 7.52
+        "y": 1.99
+    }
+}
