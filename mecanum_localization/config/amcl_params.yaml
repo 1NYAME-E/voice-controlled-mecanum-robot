@@ -1,0 +1,58 @@
+amcl:
+  ros__parameters:
+    use_sim_time: true
+
+    # Particle filter params
+    # More particles means more accurate but slower
+    min_particles: 500
+    max_particles: 2000
+
+    # How often to update the filter
+    update_min_d: 0.2 # update after moving 20cm
+    update_min_a: 0.5 # update after rotating 0.5 radians (~30 degrees)
+
+    # Resample particles every N filter updates
+    resample_interval: 1
+
+    # Laser model params
+    laser_model_type: likelihood_field
+    laser_max_range: 6.0 # match max_laser_range in mapper_params
+    laser_min_range: 0.1
+    max_beams: 60
+    laser_likelihood_max_dist: 2.0
+
+    # Motion model — mecanum is holonomic so use omni model
+    robot_model_type: nav2_amcl::OmniMotionModel
+
+    # Omni motion model noise params
+    # alpha1-4: noise from rotation and translation
+    alpha1: 0.2
+    alpha2: 0.2
+    alpha3: 0.2
+    alpha4: 0.2
+    alpha5: 0.1 # only used by omni model
+
+    # TF frames — must match your robot
+    base_frame_id: base_link
+    odom_frame_id: odom
+    global_frame_id: map
+    scan_topic: /scan
+
+    # Initial pose — must match spawn position in spawn.launch.py
+    set_initial_pose: true
+    initial_pose:
+      x: -2.0
+      y: -2.0
+      z: 0.2
+      yaw: 0.0
+    initial_cov_xx: 0.05
+    initial_cov_yy: 0.05
+    initial_cov_aa: 0.02
+
+    # Recovery — if robot gets lost, spread particles globally
+    recovery_alpha_slow: 0.001
+    recovery_alpha_fast: 0.1
+
+    # TF publishing
+    transform_tolerance: 0.5
+    tf_broadcast: true
